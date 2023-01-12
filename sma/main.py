@@ -22,8 +22,8 @@ def setup():
     for i in range(core.memory("nbAgents")):
         core.memory("agents").append(Carnivor(CarnivorBody()))
         # core.memory("agents").append(SuperPred(SuperPredBody))
-        # core.memory("agents").append(Herbivor(HerbivorBody()))
-        # core.memory("agents").append(Decomposor(DecomposorBody()))
+        core.memory("agents").append(Herbivor(HerbivorBody()))
+        core.memory("agents").append(Decomposor(DecomposorBody()))
 
 
     print("Setup END-----------")
@@ -40,11 +40,11 @@ def computePerception(a):
 
 
 def computeDecision(agent):
-    agent.filtrePerception()
+    agent.update()
 
 
 def applyDecision(agent):
-    agent.update()
+    agent.body.update()
 
 def run():
     core.cleanScreen()

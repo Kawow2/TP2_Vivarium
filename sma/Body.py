@@ -15,7 +15,7 @@ class Body:
         self.speedMax = 4
         self.maxAcc = 1
         self.hunger = Jauge(100,0)
-        self.sleep = Jauge(100,0)
+        self.sleep = Jauge(100,10)
         self.reprod = Jauge(100,5)
         self.birth = datetime.datetime.now()
         self.lifeTime = 1000
@@ -53,6 +53,7 @@ class Body:
         core.Draw.circle(self.colors[name], self.position, 10)
 
     def update(self):
+
         self.move()
         if (datetime.datetime.now() - self.birth).seconds > self.lifeTime:
             self.acceleration = Vector2(0,0)

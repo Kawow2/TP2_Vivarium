@@ -15,9 +15,9 @@ class CarnivorBody(Body):
         self.speed = Vector2(random.uniform(-5, 5), random.uniform(-5, 5))
         self.speedMax = 4
         self.maxAcc = 1
-        self.hunger = Jauge(1000,1)
-        self.sleep = Jauge(10000,1)
-        self.reprod = Jauge(1000,1)
+        self.hunger = Jauge(100,1)
+        self.sleep = Jauge(100,10)
+        self.reprod = Jauge(200,1)
 
         self.birth = datetime.datetime.now()
         self.lifeTime = 100000000

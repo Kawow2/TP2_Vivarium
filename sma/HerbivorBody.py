@@ -17,7 +17,7 @@ class HerbivorBody(Body):
         self.maxAcc = 1
         self.hunger = Jauge(100, 1)
         self.sleep = Jauge(100, 2)
-        self.reprod = Jauge(100000, 3)
+        self.reprod = Jauge(200, 1)
         self.birth = datetime.now()
         self.lifeTime = 1000000
 
