@@ -11,7 +11,7 @@ from Herbivor import Herbivor
 
 class HerbivorBody(Body):
     def __init__(self):
-        super().__init__()
+        Body.__init__(self)
         self.speed = Vector2(random.uniform(-5, 5), random.uniform(-5, 5))
         self.speedMax = 4
         self.maxAcc = 1

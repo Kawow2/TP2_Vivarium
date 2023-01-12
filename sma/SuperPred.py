@@ -1,5 +1,6 @@
 from Agent import Agent
 
+
 class SuperPred(Agent):
     def __init__(self,body):
         Agent.__init__(self)

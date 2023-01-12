@@ -5,11 +5,11 @@ from Body import Body
 import random
 from pygame import Vector2
 
-from sma.Decomposor import Decomposor
-from sma.jauge import Jauge
+from Decomposor import Decomposor
+from jauge import Jauge
 class DecomposorBody(Body):
     def __init__(self):
-        super().__init__()
+        Body.__init__(self)
 
         self.speed = Vector2(random.uniform(-5, 5), random.uniform(-5, 5))
         self.speedMax = 4

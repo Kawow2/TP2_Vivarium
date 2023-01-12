@@ -1,5 +1,4 @@
 import core as core
-from Body import Body
 from Carnivor import Carnivor
 from CarnivorBody import CarnivorBody
 from Decomposor import Decomposor
@@ -21,7 +20,7 @@ def setup():
 
     for i in range(core.memory("nbAgents")):
         core.memory("agents").append(Carnivor(CarnivorBody()))
-        # core.memory("agents").append(SuperPred(SuperPredBody))
+        core.memory("agents").append(SuperPred(SuperPredBody()))
         core.memory("agents").append(Herbivor(HerbivorBody()))
         core.memory("agents").append(Decomposor(DecomposorBody()))
 

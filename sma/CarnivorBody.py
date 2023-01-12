@@ -6,12 +6,12 @@ from pygame import Vector2
 from jauge import Jauge
 import datetime
 
-from sma.Carnivor import Carnivor
+from Carnivor import Carnivor
 
 
 class CarnivorBody(Body):
     def __init__(self):
-        super().__init__()
+        Body.__init__(self)
         self.speed = Vector2(random.uniform(-5, 5), random.uniform(-5, 5))
         self.speedMax = 4
         self.maxAcc = 1

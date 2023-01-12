@@ -1,6 +1,4 @@
 from Agent import Agent
-from sma.Herbivor import Herbivor
-from sma.SuperPred import SuperPred
 
 
 class Carnivor(Agent):
