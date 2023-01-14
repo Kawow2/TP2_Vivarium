@@ -6,6 +6,6 @@ class Fustrum(object):
 
     def inside(self,obj):
         if hasattr(obj,'position'):
-            if obj.position.distance_to(self.parent.position) < self.radius:
-                return True
+                if obj.position.distance_to(self.parent.position) < self.radius:
+                    return True
         return False

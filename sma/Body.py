@@ -8,12 +8,12 @@ from jauge import Jauge
 
 class Body:
     def __init__(self):
-        self.fustrum = Fustrum(40,self)
+        self.fustrum = Fustrum(400,self)
         self.position = Vector2(random.randint(0,core.WINDOW_SIZE[0]),random.randint(0,core.WINDOW_SIZE[1]))
         self.acceleration = Vector2(random.uniform(-5,5), random.uniform(-5,5))
         self.speed = Vector2(random.uniform(-5, 5), random.uniform(-5, 5))
-        self.speedMax = 4
-        self.maxAcc = 1
+        self.speedMax = 15
+        self.maxAcc = 15
         self.hunger = Jauge(100,0)
         self.sleep = Jauge(100,10)
         self.reprod = Jauge(100,5)
@@ -59,6 +59,7 @@ class Body:
             self.acceleration = Vector2(0,0)
             self.speed = Vector2(0,0)
             self.isDead = True
+
 
         #Faim
         if self.hunger.value > self.hunger.max:

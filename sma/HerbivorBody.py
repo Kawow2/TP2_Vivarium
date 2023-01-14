@@ -12,12 +12,12 @@ from Herbivor import Herbivor
 class HerbivorBody(Body):
     def __init__(self):
         Body.__init__(self)
-        self.speed = Vector2(random.uniform(-5, 5), random.uniform(-5, 5))
+        self.speed = Vector2(-1, 1)
         self.speedMax = 4
         self.maxAcc = 1
-        self.hunger = Jauge(100, 1)
-        self.sleep = Jauge(100, 2)
-        self.reprod = Jauge(200, 1)
+        self.hunger = Jauge(250, 1)
+        self.sleep = Jauge(100, 0)
+        self.reprod = Jauge(1000, 0)
         self.birth = datetime.now()
         self.lifeTime = 1000000
 

@@ -7,8 +7,8 @@ class Agent(object):
     def __init__(self):
         self.body = Body()
         self.uuid = random.randint(100000,999999999)
-        self.hungerMax = 100
-        self.currentHunger = 50
+        self.coefObs = 100
+
 
     def show(self):
         self.body.show(self.__class__.__name__)
@@ -20,6 +20,21 @@ class Agent(object):
 
     def filtrePerception(self):
         pass
+
+    def update(self):
+
+        danger, manger = self.filtrePerception()
+        if len(manger) > 0:
+            target = manger[0].position - self.body.position
+            target.scale_to_length(target.length())
+            self.body.acceleration = self.body.acceleration + target
+
+        if len(danger) > 0:
+            target = self.body.position - danger[0].position
+            target.scale_to_length(1 / target.length() ** 2)
+            target.scale_to_length(target.length() * self.coefObs)
+            self.body.acceleration = self.body.acceleration + target
+
 
 
 

@@ -1,4 +1,5 @@
 from Agent import Agent
+from CarnivorBody import CarnivorBody
 
 
 class SuperPred(Agent):
@@ -8,3 +9,17 @@ class SuperPred(Agent):
 
     def show(self):
         self.body.show(self.__class__.__name__)
+
+    def filtrePerception(self):
+        danger = []
+        manger = []
+
+        for i in self.body.fustrum.perceptionList:
+            i.dist = self.body.position.distance_to(i.position)
+            if isinstance(i, CarnivorBody) and not i.isDead:
+                manger.append(i)
+
+        danger.sort(key=lambda x: x.dist, reverse=False)
+        manger.sort(key=lambda x: x.dist, reverse=False)
+
+        return danger, manger

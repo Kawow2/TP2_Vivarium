@@ -6,7 +6,6 @@ from pygame import Vector2
 from jauge import Jauge
 import datetime
 
-from Carnivor import Carnivor
 from SuperPred import SuperPred
 
 
@@ -16,9 +15,9 @@ class SuperPredBody(Body):
         self.speed = Vector2(random.uniform(-5, 5), random.uniform(-5, 5))
         self.speedMax = 4
         self.maxAcc = 1
-        self.hunger = Jauge(100,1)
-        self.sleep = Jauge(100,10)
-        self.reprod = Jauge(200,1)
+        self.hunger = Jauge(10000,10)
+        self.sleep = Jauge(100,0)
+        self.reprod = Jauge(200,0)
 
         self.birth = datetime.datetime.now()
         self.lifeTime = 100000000
