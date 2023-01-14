@@ -1,6 +1,9 @@
 # TP2_Vivarium
 
-Route : predateurs
+Rouge : predateurs
 Jaune : herbivores
-Decomposor : gris 
-SuperPred : dernière couleur
+Gris : Decomposeur 
+Bleu : SuperPred
+
+Ce qui marche le 12/01 à 14h : 
+Jusqu'à la question 4 
