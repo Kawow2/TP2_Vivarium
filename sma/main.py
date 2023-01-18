@@ -1,5 +1,4 @@
 import core as core
-import json
 from Carnivor import Carnivor
 from CarnivorBody import CarnivorBody
 from Decomposor import Decomposor
@@ -9,12 +8,13 @@ from HerbivorBody import HerbivorBody
 from SuperPred import SuperPred
 from SuperPredBody import SuperPredBody
 from Vegetal import Vegetal
+from Params import Params
 
 
 def setup():
     print("Setup START---------")
 
-
+    params = (Params().load())["params"]
     core.fps = 30
     core.WINDOW_SIZE = [600, 600]
 
@@ -22,12 +22,20 @@ def setup():
     core.memory("nbAgents", 2)
     core.memory("items", [])
 
-    for i in range(core.memory("nbAgents")):
-        # core.memory("agents").append(SuperPred(SuperPredBody()))
-        # core.memory("agents").append(Carnivor(CarnivorBody()))
-        # core.memory("agents").append(Herbivor(HerbivorBody()))
-        # core.memory("items").append(Vegetal())
-        core.memory("agents").append(Decomposor(DecomposorBody()))
+    for i in range(params["SuperPred"]["nb"]):
+        core.memory("agents").append(SuperPred(SuperPredBody(params["SuperPred"]["params"])))
+
+    # for i in range(params["Carnivor"]["nb"]):
+    #     core.memory("agents").append(Carnivor(params["Carnivor"]["params"]))
+    #
+    # for i in range(params["SuperPred"]["nb"]):
+    #     # core.memory("agents").append(Herbivor(HerbivorBody()))
+    #
+    # for i in range(params["SuperPred"]["nb"]):
+    #     # core.memory("items").append(Vegetal())
+    #
+    # for i in range(params["SuperPred"]["nb"]):
+    #     # core.memory("agents").append(Decomposor(DecomposorBody()))
 
     print("Setup END-----------")
 
@@ -48,7 +56,13 @@ def computeDecision(agent):
 
 
 def applyDecision(agent):
-    agent.body.update()
+    newAgent = agent.body.update()
+    if newAgent is not None:
+        core.memory("agents").append(Carnivor(agent))
+
+def CreateAgent(classAgent):
+    core.memory("agents").append(Carnivor())
+
 
 
 def run():

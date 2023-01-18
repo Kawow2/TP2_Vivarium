@@ -1,5 +1,5 @@
 from Agent import Agent
-from CarnivorBody import CarnivorBody
+from sma.CarnivorBody import CarnivorBody
 
 
 class SuperPred(Agent):
