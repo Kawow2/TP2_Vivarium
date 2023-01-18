@@ -15,7 +15,7 @@ class HerbivorBody(Body):
         self.speed = Vector2(-1, 1)
         self.speedMax = 4
         self.maxAcc = 1
-        self.hunger = Jauge(250, 1)
+        self.hunger = Jauge(250, 0)
         self.sleep = Jauge(100, 0)
         self.reprod = Jauge(1000, 0)
         self.birth = datetime.now()

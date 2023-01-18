@@ -1,4 +1,5 @@
 import core as core
+import json
 from Carnivor import Carnivor
 from CarnivorBody import CarnivorBody
 from Decomposor import Decomposor
@@ -12,19 +13,21 @@ from Vegetal import Vegetal
 
 def setup():
     print("Setup START---------")
+
+
     core.fps = 30
-    core.WINDOW_SIZE = [800, 800]
+    core.WINDOW_SIZE = [600, 600]
 
     core.memory("agents", [])
-    core.memory("nbAgents", 10)
+    core.memory("nbAgents", 2)
     core.memory("items", [])
 
     for i in range(core.memory("nbAgents")):
-        core.memory("agents").append(SuperPred(SuperPredBody()))
-        core.memory("agents").append(Carnivor(CarnivorBody()))
-        core.memory("agents").append(Herbivor(HerbivorBody()))
-        core.memory("items").append(Vegetal())
-        # core.memory("agents").append(Decomposor(DecomposorBody()))
+        # core.memory("agents").append(SuperPred(SuperPredBody()))
+        # core.memory("agents").append(Carnivor(CarnivorBody()))
+        # core.memory("agents").append(Herbivor(HerbivorBody()))
+        # core.memory("items").append(Vegetal())
+        core.memory("agents").append(Decomposor(DecomposorBody()))
 
     print("Setup END-----------")
 
@@ -74,23 +77,28 @@ def updateEnv():
         for b in core.memory('agents'):
             if b.uuid != a.uuid:
                 if a.body.position.distance_to(b.body.position) <= 10:
-                    if isinstance(a, Carnivor) and isinstance(b, Herbivor) :
+                    #carnivor eats herbivor
+                    if isinstance(a, Carnivor) and isinstance(b, Herbivor) and not a.body.isDead:
                         core.memory("agents").remove(b)
                         a.body.hunger.addValue(-25)
-                    elif isinstance(a, SuperPred) and isinstance(b, Carnivor):
+                        #superpred eats carnivor
+                    elif isinstance(a, SuperPred) and isinstance(b, Carnivor) and not a.body.isDead:
                         core.memory("agents").remove(b)
                         b.body.hunger.addValue(-25)
-                    # elif isinstance(b, Carnivor) and isinstance(a, Herbivor):
-                    #     core.memory("agents").remove(a)
-                    #     b.body.hunger.addValue(-25)
-                    #     print(b.body.hunger.value)
+                        #decomposor eats dead carnivor or superpred or herbivor
+                    elif isinstance(a, Decomposor) and b.body.isDead and (isinstance(b, Carnivor) or  isinstance(b, SuperPred) or isinstance(b, Herbivor)):
+                        core.memory("agents").remove(b)
+                        a.body.hunger.addValue(-25)
+
+
     for a in core.memory("agents"):
         for c in core.memory('items'):
-            if isinstance(a,Herbivor):
+            if isinstance(a,Herbivor) or isinstance(a, Decomposor):
                 if a.body.position.distance_to(c.position) <= c.mass:
                     core.memory("items").remove(c)
                     core.memory("items").append(Vegetal())
                     a.body.hunger.addValue(-25)
+
 
 
 core.main(setup, run)

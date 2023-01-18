@@ -19,7 +19,6 @@ class SuperPred(Agent):
             if isinstance(i, CarnivorBody) and not i.isDead:
                 manger.append(i)
 
-        danger.sort(key=lambda x: x.dist, reverse=False)
         manger.sort(key=lambda x: x.dist, reverse=False)
 
-        return danger, manger
+        return danger, manger, []

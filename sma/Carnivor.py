@@ -14,6 +14,7 @@ class Carnivor(Agent):
     def filtrePerception(self):
         danger = []
         manger = []
+        protect = []
 
         for i in self.body.fustrum.perceptionList:
             i.dist = self.body.position.distance_to(i.position)
@@ -25,6 +26,6 @@ class Carnivor(Agent):
         danger.sort(key=lambda x: x.dist, reverse=False)
         manger.sort(key=lambda x: x.dist, reverse=False)
 
-        return danger, manger
+        return danger, manger, protect
 
 

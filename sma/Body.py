@@ -8,9 +8,9 @@ from jauge import Jauge
 
 class Body:
     def __init__(self):
-        self.fustrum = Fustrum(400,self)
+        self.fustrum = Fustrum(1000,self)
         self.position = Vector2(random.randint(0,core.WINDOW_SIZE[0]),random.randint(0,core.WINDOW_SIZE[1]))
-        self.acceleration = Vector2(random.uniform(-5,5), random.uniform(-5,5))
+        self.acceleration = Vector2(random.uniform(-2,2), random.uniform(-2,2))
         self.speed = Vector2(random.uniform(-5, 5), random.uniform(-5, 5))
         self.speedMax = 15
         self.maxAcc = 15
