@@ -79,6 +79,8 @@ class Body:
 
         if self.sleep.value<self.sleep.min:
             self.isSleeping = False
+    def getRightPosition(self,body):
+        print(body)
 
 
 

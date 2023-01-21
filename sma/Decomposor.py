@@ -4,12 +4,13 @@ from Herbivor import Herbivor
 from SuperPredBody import SuperPredBody
 from Vegetal import Vegetal
 from HerbivorBody import HerbivorBody
+from DecomposorBody import DecomposorBody
 
 
 class Decomposor(Agent):
-    def __init__(self,body):
+    def __init__(self,args):
         Agent.__init__(self)
-        self.body = body
+        self.body = DecomposorBody(args)
 
     def show(self):
         self.body.show(self.__class__.__name__)
@@ -21,8 +22,6 @@ class Decomposor(Agent):
 
         for i in self.body.fustrum.perceptionList:
             i.dist = self.body.position.distance_to(i.position)
-            if isinstance(i, Vegetal):
-                manger.append(i)
             if isinstance(i, CarnivorBody) and i.isDead:
                 manger.append(i)
             if isinstance(i, SuperPredBody) and i.isDead:

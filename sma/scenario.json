@@ -32,43 +32,8 @@
                   550
                ],
                "reprod":[
-                  100,
-                  150
-               ]
-            }
-         },
-          "Carnivor":
-         {
-            "nb":1,
-            "params":{
-               "lifetime" : 5,
-               "speed":[
-                  -5,
-                  5
-               ],
-               "acceleration":[
-                  -5,
-                  5
-               ],
-               "speedMax":[
-                  5,
-                  10
-               ],
-               "maxAcc":[
-                  5,
-                  10
-               ],
-               "hunger":[
-                  1000,
-                  1500
-               ],
-               "sleep":[
-                  500,
-                  550
-               ],
-               "reprod":[
-                  100,
-                  150
+                  75,
+                  120
                ]
             }
          }

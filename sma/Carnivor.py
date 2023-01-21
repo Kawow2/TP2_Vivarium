@@ -1,12 +1,14 @@
 from Agent import Agent
 from HerbivorBody import HerbivorBody
 from SuperPredBody import SuperPredBody
+from CarnivorBody import CarnivorBody
 
 
 class Carnivor(Agent):
-    def __init__(self,body):
+    def __init__(self,parent):
         Agent.__init__(self)
-        self.body = body
+        if parent is not None:
+            self.body = CarnivorBody(parent)
 
     def show(self):
         self.body.show(self.__class__.__name__)
