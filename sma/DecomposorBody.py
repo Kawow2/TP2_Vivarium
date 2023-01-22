@@ -16,8 +16,8 @@ class DecomposorBody(Body):
         if isinstance(args, DecomposorBody):
             self.speed = Vector2(random.uniform(args.speed[0] - 5, args.speed[0] + 5),
                                  random.uniform(args.speed[1] - 5, args.speed[1] + 5))
-            self.speedMax = random.uniform(args.speedMax - 2, args.speedMax + 2)
-            self.maxAcc = random.uniform(args.maxAcc - 2, args.maxAcc + 2)
+            self.speedMax = abs(random.uniform(args.speedMax - 2, args.speedMax + 2))
+            self.maxAcc = abs(random.uniform(args.maxAcc - 2, args.maxAcc + 2))
             self.hunger = Jauge(random.uniform(args.hunger.max - 5, args.hunger.max + 5), 1)
             self.sleep = Jauge(random.uniform(args.sleep.max - 5, args.sleep.max + 5), 1)
             self.reprod = Jauge(random.uniform(args.reprod.max - 5, args.reprod.max + 5), 1)

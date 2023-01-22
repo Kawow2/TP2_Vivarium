@@ -22,11 +22,7 @@ class Decomposor(Agent):
 
         for i in self.body.fustrum.perceptionList:
             i.dist = self.body.position.distance_to(i.position)
-            if isinstance(i, CarnivorBody) and i.isDead:
-                manger.append(i)
-            if isinstance(i, SuperPredBody) and i.isDead:
-                manger.append(i)
-            if isinstance(i, HerbivorBody) and i.isDead:
+            if  not isinstance(i, Vegetal) and i.isDead :
                 manger.append(i)
 
         manger.sort(key=lambda x: x.dist, reverse=False)

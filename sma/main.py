@@ -1,4 +1,5 @@
 import datetime
+import threading
 
 import core as core
 from Carnivor import Carnivor
@@ -7,13 +8,14 @@ from Herbivor import Herbivor
 from SuperPred import SuperPred
 from Vegetal import Vegetal
 import json
-
+import matplotlib.pyplot as plt
 
 def setup():
     data = load('scenario.json')
     params = data["params"]
     core.fps = 30
     core.start = datetime.datetime.now()
+    core.graph = data["graph"]
     core.WINDOW_SIZE = [600, 600]
     core.duration = data["simDuration"]
 
@@ -28,10 +30,15 @@ def setup():
         core.memory("agents").append(SuperPred(params["SuperPred"]["params"]))
 
     for i in range(params["Herbivor"]["nb"]):
-        core.memory("items").append(Herbivor(params["Herbivor"]["params"]))
+        core.memory("agents").append(Herbivor(params["Herbivor"]["params"]))
 
     for i in range(params["Decomposor"]["nb"]):
         core.memory("agents").append(Decomposor(params["Decomposor"]["params"]))
+
+    for i in range(params["Vegetaux"]["nb"]):
+        core.memory("items").append(Vegetal([]))
+
+
 
     print("Setup END-----------")
 
@@ -39,7 +46,6 @@ def setup():
 def load(path):
     file = open(path)
     data = json.load(file)
-    print((data))
     return data
 
 
@@ -146,6 +152,32 @@ def run():
     updateEnv()
 
 
+def displayGraph():
+    plt.cla()
+    agents = core.memory("agents")
+    list = [{"name":"SuperPred","nb": 0}, {"name":"Carnivor","nb": 0}, {"name":"Herbivor","nb": 0}, {"name":"Decomposor","nb": 0}, {"name":"Total","nb": 0}]
+    for agent in agents:
+        if not agent.body.isDead:
+            if isinstance(agent, SuperPred):
+                list[0]["nb"] += 1
+            if isinstance(agent, Carnivor):
+                list[1]["nb"] += 1
+            if isinstance(agent, Herbivor):
+                list[2]["nb"] += 1
+            if isinstance(agent, Decomposor):
+                list[3]["nb"] += 1
+        list[4]["nb"] += 1
+
+
+    nb = [x["nb"] for x in list]
+    names = [x["name"] for x in list]
+    plt.bar(names, nb)
+    plt.ion()
+    plt.draw()
+    plt.show()
+    plt.pause(0.000001)
+
+
 def findRightAgent(agent):
     if agent.__class__.__name__ == "SuperPred":
         return SuperPred(agent.body)
@@ -161,7 +193,7 @@ def updateEnv():
     for a in core.memory("agents"):
         for b in core.memory('agents'):
             if b.uuid != a.uuid:
-                if a.body.position.distance_to(b.body.position) <= 10:
+                if a.body.position.distance_to(b.body.position) <= b.body.mass:
                     # carnivor eats herbivor
                     if isinstance(a, Carnivor) and isinstance(b, Herbivor) and not a.body.isDead:
                         core.memory("agents").remove(b)
@@ -172,7 +204,7 @@ def updateEnv():
                         b.body.hunger.addValue(-25)
                         # decomposor eats dead carnivor or superpred or herbivor
                     elif isinstance(a, Decomposor) and b.body.isDead and (
-                            isinstance(b, Carnivor) or isinstance(b, SuperPred) or isinstance(b, Herbivor)):
+                            isinstance(b, Carnivor) or isinstance(b, SuperPred) or isinstance(b, Herbivor) or isinstance(b, Decomposor)):
                         core.memory("agents").remove(b)
                         core.memory("items").append(Vegetal(b.body.position))
                         a.body.hunger.addValue(-25)
