@@ -1,10 +1,115 @@
 {
-   "simDuration":600,
+   "simDuration":100,
    "params":
       {
          "SuperPred":
          {
+            "nb":10,
+            "params":{
+               "lifetime" : 5,
+               "speed":[
+                  -5,
+                  5
+               ],
+               "acceleration":[
+                  -5,
+                  5
+               ],
+               "speedMax":[
+                  5,
+                  10
+               ],
+               "maxAcc":[
+                  5,
+                  10
+               ],
+               "hunger":[
+                  1000,
+                  1500
+               ],
+               "sleep":[
+                  100,
+                  150
+               ],
+               "reprod":[
+                  400,
+                  500
+               ]
+            }
+         },
+         "Carnivor":
+         {
+            "nb":10,
+            "params":{
+               "lifetime" : 5,
+               "speed":[
+                  -5,
+                  5
+               ],
+               "acceleration":[
+                  -5,
+                  5
+               ],
+               "speedMax":[
+                  5,
+                  10
+               ],
+               "maxAcc":[
+                  5,
+                  10
+               ],
+               "hunger":[
+                  1000,
+                  1500
+               ],
+               "sleep":[
+                  500,
+                  550
+               ],
+               "reprod":[
+                  75,
+                  120
+               ]
+            }
+         },
+         "Herbivor":
+         {
             "nb":1,
+            "params":{
+               "lifetime" : 5,
+               "speed":[
+                  -5,
+                  5
+               ],
+               "acceleration":[
+                  -5,
+                  5
+               ],
+               "speedMax":[
+                  5,
+                  10
+               ],
+               "maxAcc":[
+                  5,
+                  10
+               ],
+               "hunger":[
+                  1000,
+                  1500
+               ],
+               "sleep":[
+                  500,
+                  550
+               ],
+               "reprod":[
+                  75,
+                  120
+               ]
+            }
+         },
+         "Decomposor":
+         {
+            "nb":10,
             "params":{
                "lifetime" : 5,
                "speed":[

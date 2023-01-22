@@ -1,5 +1,6 @@
 import inspect
 import sys
+from datetime import datetime
 
 import pygame
 
@@ -27,6 +28,9 @@ keyPressList = None
 memoryStorage = {}
 keyReleaseList = None
 fullscreen = False
+start = None
+duration = None
+
 
 def printMemory():
     print("--------------MEMORY:-------------------")
@@ -121,7 +125,7 @@ def setup():
         screen = pygame.display.set_mode(WINDOW_SIZE)
     else:
         screen = pygame.display.set_mode(
-            (0,0),
+            (0, 0),
             pygame.FULLSCREEN
         )
         WINDOW_SIZE = (screen.get_size())
@@ -148,8 +152,8 @@ def main(setupf, runf):
 
     done = False
     print("Run START-----------")
-    while not done:
 
+    while not (datetime.now() - start).seconds > duration-1:
         if not loopLock:
             if screenCleen:
                 screenCleen = False
@@ -282,7 +286,6 @@ class Draw:
         else:
             pygame.draw.arc(core.screen, color, rect, start_angle, stop_angle, width)
 
-
     def lines(color, closed, points, width=1):
         if len(color) > 3:
             surface = screen.convert_alpha()
@@ -307,19 +310,19 @@ class Draw:
         pygame.font.init()
         myfont = pygame.font.SysFont(font, taille)
         textsurface = myfont.render(texte, False, color)
-        if len(color)>3:
+        if len(color) > 3:
             textsurface.set_alpha(color[3])
         screen.blit(textsurface, position)
 
 
 class Sound:
 
-    def __init__(self,url):
+    def __init__(self, url):
         self.ready = False
         self.url = url
-        self.play=False
-        self.thread=None
-        if self.url!="":
+        self.play = False
+        self.thread = None
+        if self.url != "":
             pygame.mixer.pre_init(44100, -16, 2, 2048)
             pygame.mixer.init()
             pygame.mixer.music.load(url)
@@ -327,7 +330,7 @@ class Sound:
     def start(self):
         if not self.play:
             self.play = True
-            self.thread=threading.Thread(target=self.playin(), args=(1,))
+            self.thread = threading.Thread(target=self.playin(), args=(1,))
 
     def rewind(self):
         if self.play:
@@ -341,20 +344,18 @@ class Sound:
             self.play = True
             pygame.mixer.music.unpause()
 
-
     def stop(self):
         if self.play:
             self.play = False
             pygame.mixer.music.stop()
 
-
-
     def playin(self):
         pygame.mixer.music.play()
         print("playin")
 
+
 class Texture:
-    def __init__(self, url, pos=pygame.Vector2(), offset=0, scaleSize=(100, 100), display=True,alpha=255):
+    def __init__(self, url, pos=pygame.Vector2(), offset=0, scaleSize=(100, 100), display=True, alpha=255):
         self.ready = False
         self.sprit = None
         self.url = url
@@ -365,8 +366,8 @@ class Texture:
         self.angle = 0
         self.offset = offset
         self.display = display
-        self.alpha=alpha
-        self.box=False
+        self.alpha = alpha
+        self.box = False
 
     def load(self):
 
@@ -379,12 +380,10 @@ class Texture:
     def show(self):
         if self.display:
             if self.box:
-                core.Draw.rect((0,255,0),(self.pos.x,self.pos.y,self.w,self.h),1)
+                core.Draw.rect((0, 255, 0), (self.pos.x, self.pos.y, self.w, self.h), 1)
             if self.ready:
                 self.sprit.set_alpha(self.alpha)
                 rotated_image = pygame.transform.rotate(self.sprit, self.angle)
                 new_rect = rotated_image.get_rect(center=self.sprit.get_rect(topleft=self.pos).center)
 
                 core.screen.blit(rotated_image, new_rect)
-
-

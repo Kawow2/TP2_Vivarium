@@ -35,17 +35,3 @@ class Herbivor(Agent):
 
         return danger, manger, protect
 
-
-    # def update(self):
-    #
-    #     danger, manger = self.filtrePerception()
-    #     if len(manger) > 0:
-    #         target = manger[0].position - self.body.position
-    #         target.scale_to_length(target.length())
-    #         self.body.acceleration = self.body.acceleration + target
-    #
-    #     if len(danger) > 0:
-    #         target = self.body.position - danger[0].position
-    #         target.scale_to_length(1 / target.length() ** 2)
-    #         target.scale_to_length(target.length() * (self.coefObs + self.body.mass))
-    #         self.body.acceleration = self.body.acceleration + target

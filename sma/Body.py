@@ -8,17 +8,17 @@ from jauge import Jauge
 
 class Body:
     def __init__(self):
-        self.fustrum = Fustrum(1000,self)
-        self.position = Vector2(random.randint(0,core.WINDOW_SIZE[0]),random.randint(0,core.WINDOW_SIZE[1]))
-        self.acceleration = Vector2(random.uniform(-2,2), random.uniform(-2,2))
+        self.fustrum = Fustrum(20, self)
+        self.position = Vector2(random.randint(0, core.WINDOW_SIZE[0]), random.randint(0, core.WINDOW_SIZE[1]))
+        self.acceleration = Vector2(random.uniform(-2, 2), random.uniform(-2, 2))
         self.speed = Vector2(random.uniform(-5, 5), random.uniform(-5, 5))
         self.speedMax = 15
         self.maxAcc = 15
-        self.hunger = Jauge(100,0)
-        self.sleep = Jauge(100,10)
-        self.reprod = Jauge(100,5)
+        self.hunger = Jauge(100, 0)
+        self.sleep = Jauge(100, 10)
+        self.reprod = Jauge(100, 5)
         self.birth = datetime.datetime.now()
-        self.lifeTime = 1000
+        self.lifetime = 1000
         self.isDead = False
         self.isSleeping = False
         self.colors = {
@@ -49,44 +49,34 @@ class Body:
         if self.position.y + self.maxAcc >= core.WINDOW_SIZE[1]:
             self.speed.y *= -1
 
-    def show(self,name):
+    def show(self, name):
         core.Draw.circle(self.colors[name], self.position, 10)
 
     def update(self):
 
         self.move()
-        if (datetime.datetime.now() - self.birth).seconds > self.lifeTime:
-            self.acceleration = Vector2(0,0)
-            self.speed = Vector2(0,0)
+        if (datetime.datetime.now() - self.birth).seconds > self.lifetime:
+            self.acceleration = Vector2(0, 0)
+            self.speed = Vector2(0, 0)
             self.isDead = True
 
-
-        #Faim
+        # Faim
         if self.hunger.value > self.hunger.max:
             self.isDead = True
+        self.hunger.value += self.hunger.step
 
-        self.hunger.value+=self.hunger.step
-
-        #fatigue
+        # fatigue
         if not self.isSleeping:
             self.sleep.value += self.sleep.step
 
-        if self.sleep.value>self.sleep.max:
+        if self.sleep.value > self.sleep.max:
             self.isSleeping = True
 
         if self.isSleeping:
-            self.sleep.value -=self.sleep.step
+            self.sleep.value -= self.sleep.step
 
-        if self.sleep.value<self.sleep.min:
+        if self.sleep.value < self.sleep.min:
             self.isSleeping = False
-    def getRightPosition(self,body):
-        print(body)
 
-
-
-
-
-
-
-
-
+        # reprod
+        self.hunger.value += self.reprod.step

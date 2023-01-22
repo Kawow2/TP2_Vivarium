@@ -20,7 +20,7 @@ class CarnivorBody(Body):
             self.hunger = Jauge(random.uniform(args.hunger.max - 5, args.hunger.max + 5), 1)
             self.sleep = Jauge(random.uniform(args.sleep.max - 5, args.sleep.max + 5), 1)
             self.reprod = Jauge(random.uniform(args.reprod.max - 5, args.reprod.max + 5), 1)
-            self.lifeTime = random.uniform(args.lifeTime - 5, args.lifeTime + 5)
+            self.lifetime = random.uniform(args.lifetime - 5, args.lifetime + 5)
             self.acceleration = Vector2(random.uniform(args.acceleration[0] - 5, args.acceleration[0] + 5),
                                         random.uniform(args.acceleration[1] - 5, args.acceleration[1] + 5))
             self.position = Vector2(random.uniform((args.position[0] - 5) % core.WINDOW_SIZE[0],
@@ -37,7 +37,7 @@ class CarnivorBody(Body):
             self.hunger = Jauge(random.uniform(args["hunger"][0], args["hunger"][1]), 1)
             self.sleep = Jauge(random.uniform(args["sleep"][0], args["sleep"][1]), 1)
             self.reprod = Jauge(random.uniform(args["reprod"][0], args["reprod"][1]), 1)
-            self.lifeTime = args["lifetime"]
+            self.lifetime = args["lifetime"]
             self.acceleration = Vector2(random.uniform(args["acceleration"][0], args["acceleration"][1]),
                                         random.uniform(args["acceleration"][0], args["acceleration"][1]))
         self.birth = datetime.datetime.now()
