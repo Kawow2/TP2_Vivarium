@@ -38,7 +38,9 @@ def setup():
     for i in range(params["Vegetaux"]["nb"]):
         core.memory("items").append(Vegetal([]))
 
-
+    if core.graph:
+        thr = threading.Thread(target=displayGraph,args=())
+        thr.start()
 
     print("Setup END-----------")
 
@@ -150,33 +152,22 @@ def run():
         applyDecision(agent)
 
     updateEnv()
-
-
 def displayGraph():
-    plt.cla()
-    agents = core.memory("agents")
-    list = [{"name":"SuperPred","nb": 0}, {"name":"Carnivor","nb": 0}, {"name":"Herbivor","nb": 0}, {"name":"Decomposor","nb": 0}, {"name":"Total","nb": 0}]
-    for agent in agents:
-        if not agent.body.isDead:
-            if isinstance(agent, SuperPred):
-                list[0]["nb"] += 1
-            if isinstance(agent, Carnivor):
-                list[1]["nb"] += 1
-            if isinstance(agent, Herbivor):
-                list[2]["nb"] += 1
-            if isinstance(agent, Decomposor):
-                list[3]["nb"] += 1
-        list[4]["nb"] += 1
+    while True:
+        plt.cla()
+        data = {'Herbivor': 0, 'Carnivor': 0, 'SuperPred': 0, 'Decomposor': 0}
+        for agent in core.memory("agents"):
+            data[agent.__class__.__name__] += 1
+        plt.cla()  # Clear axis
+        labels = list(data.keys())
+        values = list(data.values())
+        plt.ylabel("Nombre d'individus")
 
-
-    nb = [x["nb"] for x in list]
-    names = [x["name"] for x in list]
-    plt.bar(names, nb)
-    plt.ion()
-    plt.draw()
-    plt.show()
-    plt.pause(0.000001)
-
+        plt.title("Nombre d'individus en fonction de l'espèce")
+        plt.bar(labels,values,color=['yellow', 'red', 'blue', 'grey'])
+        plt.draw()
+        plt.show()
+        plt.pause(0.001)
 
 def findRightAgent(agent):
     if agent.__class__.__name__ == "SuperPred":
