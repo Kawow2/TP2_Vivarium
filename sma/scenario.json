@@ -1,6 +1,6 @@
 {
    "simDuration":100,
-   "graph": true,
+   "graph": false,
    "params":
       {
          "Vegetaux" : {
@@ -8,9 +8,9 @@
          },
          "SuperPred":
          {
-            "nb":2,
+            "nb":1,
             "params":{
-               "lifetime" : 5,
+               "lifetime" : 100,
                "speed":[
                   -5,
                   5
@@ -20,32 +20,32 @@
                   5
                ],
                "speedMax":[
-                  5,
-                  10
+                  4,
+                  5
                ],
                "maxAcc":[
-                  5,
-                  10
+                  4,
+                  5
                ],
                "hunger":[
                   1000,
                   1500
                ],
                "sleep":[
-                  100,
-                  150
+                  200,
+                  300
                ],
                "reprod":[
-                  400,
+                  300,
                   500
                ]
             }
          },
          "Carnivor":
          {
-            "nb":3,
+            "nb":5,
             "params":{
-               "lifetime" : 5,
+               "lifetime" : 100,
                "speed":[
                   -5,
                   5
@@ -55,23 +55,23 @@
                   5
                ],
                "speedMax":[
-                  5,
-                  10
+                  3,
+                  5
                ],
                "maxAcc":[
-                  5,
-                  10
+                  3,
+                  5
                ],
                "hunger":[
-                  1000,
-                  1500
+                  2000,
+                  2500
                ],
                "sleep":[
                   500,
                   550
                ],
                "reprod":[
-                  400,
+                  250,
                   500
                ]
             }
@@ -80,7 +80,7 @@
          {
             "nb":10,
             "params":{
-               "lifetime" : 12,
+               "lifetime" : 100,
                "speed":[
                   -5,
                   5
@@ -90,12 +90,12 @@
                   5
                ],
                "speedMax":[
-                  5,
-                  10
+                  1,
+                  5
                ],
                "maxAcc":[
-                  5,
-                  10
+                  1,
+                  5
                ],
                "hunger":[
                   1000,
@@ -106,7 +106,7 @@
                   550
                ],
                "reprod":[
-                  200,
+                  150,
                   400
                ]
             }
@@ -115,7 +115,7 @@
          {
             "nb":10,
             "params":{
-               "lifetime" : 20,
+               "lifetime" : 100,
                "speed":[
                   -5,
                   5
@@ -125,24 +125,24 @@
                   5
                ],
                "speedMax":[
-                  5,
-                  10
+                  1,
+                  5
                ],
                "maxAcc":[
-                  5,
-                  10
+                  1,
+                  5
                ],
                "hunger":[
-                  1000,
-                  1500
+                  4000,
+                  5000
                ],
                "sleep":[
                   500,
                   550
                ],
                "reprod":[
-                  400,
-                  500
+                  500,
+                  700
                ]
             }
          }
