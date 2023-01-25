@@ -14,7 +14,7 @@ précédent (une classe par fichier, un agent doit être pro-actif, avoir un bod
 distinctement. 
 > Pour les couleurs :  
 > 
-![](img/color.png)
+![](img/colors.png)
 
 - [x] 3. (2 pts) Ajouter, pour chaque body :
   - [x]   a. Une vitesse
@@ -48,13 +48,13 @@ comportements suivants :
     > - si un **super prédateur** est dans son champ de vision et qu'il fuit un **carnivore**, un agent **herbivore** se dirigera vers le **super prédateur** pour qu'il le protège et mange le **carnivore**
 - [x] 7. (2 pts) Modifier la méthode « update() » de la question 4 pour prendre en compte ses comportements.
 - [x] 8. (3 pts) Ajouter un fichier scenario.json contenant les paramètres du vivarium (exemple ici :
-https://pastebin.com/bDGhd0D9). Les intervalles [Min, Max] indique un paramètre aléatoire
-- [x] 9. (1 pts) Ajouter une fonction « load(path) » pour charger un scenario
-- [x] 10.  (1 pts) Afficher dans la console le pourcentage de la population
+https://pastebin.com/bDGhd0D9). Les intervalles [Min, Max] indique un paramètre aléatoire  
+- [x] 9. (1 pts) Ajouter une fonction « load(path) » pour charger un scenario  
+- [x] 10.  (1 pts) Afficher dans la console le pourcentage de la population  
 > affichage est possible via un clique gauche
 ![](img/pop.png)
 - [x] 11.  (1 pts) Afficher dans la console, l’individu ayant la meilleur génétique (plus grande vitesse max, plus grandes jauges, etc.)
-> affichage est possible via un clique gauche
-![](img/bestAgent.png)
-- [x] 12.  (1 pts) Utiliser matplotlib et threading pour afficher un graphique en temps réel des populations.
-![](img/grapph.png)
+> affichage est possible via un clique gauche  
+![](img/bestAgent.png)  
+- [x] 12.  (1 pts) Utiliser matplotlib et threading pour afficher un graphique en temps réel des populations.  
+![](img/grapph.png)  
