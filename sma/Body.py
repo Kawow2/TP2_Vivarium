@@ -8,7 +8,7 @@ from jauge import Jauge
 
 class Body:
     def __init__(self):
-        self.fustrum = Fustrum(40, self)
+        self.fustrum = Fustrum(50, self)
         self.mass = 20
         self.position = Vector2(random.randint(0, core.WINDOW_SIZE[0]), random.randint(0, core.WINDOW_SIZE[1]))
         self.acceleration = Vector2(random.uniform(-2, 2), random.uniform(-2, 2))

@@ -7,7 +7,7 @@ class Agent(object):
     def __init__(self):
         self.body = Body()
         self.uuid = random.randint(100000, 999999999)
-        self.coefObs = 100
+        self.coefObs = 500
 
     def show(self):
         self.body.show(self.__class__.__name__)

@@ -186,19 +186,19 @@ def updateEnv():
             if b.uuid != a.uuid:
                 if a.body.position.distance_to(b.body.position) <= b.body.mass:
                     # carnivor eats herbivor
-                    if isinstance(a, Carnivor) and isinstance(b, Herbivor) and not a.body.isDead:
+                    if isinstance(a, Carnivor) and isinstance(b, Herbivor) and not (a.body.isDead or a.body.isSleeping):
                         core.memory("agents").remove(b)
-                        a.body.hunger.addValue(-25)
+                        a.body.hunger.addValue(-400)
                         # superpred eats carnivor
-                    elif isinstance(a, SuperPred) and isinstance(b, Carnivor) and not a.body.isDead:
+                    elif isinstance(a, SuperPred) and isinstance(b, Carnivor) and not (a.body.isDead or a.body.isSleeping):
                         core.memory("agents").remove(b)
-                        b.body.hunger.addValue(-25)
+                        b.body.hunger.addValue(-400)
                         # decomposor eats dead carnivor or superpred or herbivor
                     elif isinstance(a, Decomposor) and b.body.isDead and (
                             isinstance(b, Carnivor) or isinstance(b, SuperPred) or isinstance(b, Herbivor) or isinstance(b, Decomposor)):
                         core.memory("agents").remove(b)
                         core.memory("items").append(Vegetal(b.body.position))
-                        a.body.hunger.addValue(-25)
+                        a.body.hunger.addValue(-400)
 
         if a.body.reprod.value > a.body.reprod.max:
             agent = findRightAgent(a)
@@ -210,7 +210,7 @@ def updateEnv():
             if isinstance(a, Herbivor):
                 if a.body.position.distance_to(c.position) <= c.mass:
                     core.memory("items").remove(c)
-                    a.body.hunger.addValue(-25)
+                    a.body.hunger.addValue(-400)
 
 
 core.main(setup, run)
