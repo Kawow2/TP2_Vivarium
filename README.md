@@ -58,3 +58,5 @@ https://pastebin.com/bDGhd0D9). Les intervalles [Min, Max] indique un paramètre
 ![](img/bestAgent.png)  
 - [x] 12.  (1 pts) Utiliser matplotlib et threading pour afficher un graphique en temps réel des populations.  
 ![](img/grapph.png)  
+
+> Les paramètres ne sont pas assez bons pour quel le vivarium sont cohérents dans le temps
